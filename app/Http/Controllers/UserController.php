@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -48,4 +49,19 @@ class UserController extends Controller
 
         return response()->json();
     }
+
+    public function associateCar(User $users, Car $car): JsonResponse
+    {
+        $users->cars()->attach($car->id);
+
+        return response()->json();
+    }
+
+    public function disassociateCar(User $users, Car $car): JsonResponse
+    {
+        $users->cars()->detach($car->id);
+
+        return response()->json();
+    }
+
 }
