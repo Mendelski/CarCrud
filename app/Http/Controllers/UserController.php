@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\GeneralService;
+use App\Http\Services\UserService;
 use App\Models\Car;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -9,12 +11,12 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
-        return User::all();
+        return response()->json(UserService::showAllUsers());
     }
 
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $data = $request->validate([
             'name' => ['required'],
@@ -22,46 +24,41 @@ class UserController extends Controller
             'password' => ['required'],
         ]);
 
-        return User::create($data);
+        return response()->json(UserService::createUser($data));
     }
 
-    public function show(User $users): User
+    public function show(User $user): JsonResponse
     {
-        return $users;
+        return response()->json(UserService::showUser($user));
     }
 
-    public function update(Request $request, User $users): User
+    public function update(Request $request, User $user): JsonResponse
     {
         $data = $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'max:254'],
             'password' => ['required'],
         ]);
-
-        $users->update($data);
-
-        return $users;
+        $user = UserService::updateUser($user, $data);
+        return response()->json(['user' => $user]);
     }
 
-    public function destroy(User $users): JsonResponse
+    public function destroy(User $user): JsonResponse
     {
-        $users->delete();
-
-        return response()->json();
+        UserService::deleteUser($user);
+        return GeneralService::returnOkJson();
     }
 
-    public function associateCar(User $users, Car $car): JsonResponse
+    public function associateCar(User $user, Car $car): JsonResponse
     {
-        $users->cars()->attach($car->id);
-
-        return response()->json();
+        UserService::associateCar($user, $car);
+        return GeneralService::returnOkJson();
     }
 
-    public function disassociateCar(User $users, Car $car): JsonResponse
+    public function disassociateCar(User $user, Car $car): JsonResponse
     {
-        $users->cars()->detach($car->id);
-
-        return response()->json();
+        UserService::disassociateCar($user, $car);
+        return GeneralService::returnOkJson();
     }
 
 }
