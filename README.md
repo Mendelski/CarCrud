@@ -28,57 +28,43 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 
 ## Objetivo do projeto
 
+1. Criar um projeto com migrações para criar tabelas de usuários e carros, onde usuários possuem muitos carros.
+2. Organizar o projeto seguindo uma estrutura de Services e Repositories.
+3. Proibir a utilização direta de models no controller.
+4. Utilizar soft deletes em todas as models.
+5. Evitar ao máximo a repetição de código, seguindo os princípios de programação DRY, onde códigos repetidos devem ser abstraídos em classes abstratas.
 
-x. Criar um projeto com migrações que crie uma tabela de usuários e carros, onde usuários possuem muitos carros
+Tarefas relacionadas a Usuários:
 
-x. O projeto deve seguir uma organização de Services e Repositories
+a. Criar uma rota no sistema para cadastrar um usuário na tabela.
 
-x. Proibido a utilização de models diretamente no controller
+b. Criar uma rota no sistema que retorne um usuário com todos os seus carros, utilizando um ID informado na rota.
 
-x. Utilizar soft deletes em todas as models
+c. Criar uma rota no sistema que retorne todos os usuários com todos os carros relacionados do sistema.
 
-x. O projeto deve ao máximo evitar repetição de código, seguindo princípios de programação DRY, onde códigos repetidos devem ser abstraidos em classes abstratas.
+d. Criar uma rota no sistema que receba um ID de um usuário e permita atualizar seu email e senha.
+
+e. Criar uma rota no sistema que permita deletar um usuário na tabela de usuários, recebendo um ID de usuário.
+
+f. Ao deletar um usuário, todos os relacionamentos com carros também devem ser deletados.
+
+Tarefas relacionadas a Carros:
+
+a. Criar uma rota no sistema para cadastrar um carro na tabela.
+
+b. Criar uma rota no sistema que retorne um carro por um ID informado na rota.
+
+c. Criar uma rota no sistema que retorne todos os carros do sistema.
+
+d. Criar uma rota no sistema que receba um ID de um carro e permita atualizar as informações do carro.
+
+e. Criar uma rota no sistema que permita deletar um carro na tabela de carros, recebendo um ID de carro.
+
+f. Ao deletar um carro do sistema, todos os seus relacionamentos com usuários também devem ser deletados.
 
 
-c. Uma rota no sistema que permita cadastrar um usuário na tabela criada
-e. Uma rota no sistema que retorne um usuário com todos os seus carros por um id informado na rota
-f. Uma rota no sistema que retorne todos os usuários com todos os carros relacionados do sistema
-g. Uma rota no sistema que receba um id de um usuário e permita atualizar seu email e senha
-d. Uma rota no sistema que permita deletar um usuário na tabela de usuários recebendo um id de usuário
-x. Quando um usuário é deletado, todos os relacionamentos com carros também deve ser deletados
+Tarefas Gerais:
 
-c. Uma rota no sistema que permita cadastrar um carro na tabela criada
-e. Uma rota no sistema que retorne um carro por um id informado na rota
-f. Uma rota no sistema que retorne todos os carros do sistema
-g. Uma rota no sistema que receba um id de um carro e permita atualizar o carro
-d. Uma rota no sistema que permita deletar um carro na tabela de carros recebendo um id de carro
-x. Quando um carro é deletado do sistema, todos os seus relacionamentos com usuários também deve ser deletado
-
-x. Uma rota no sistema que associa um usuário com um carro
-x. Uma rota que desassocia um usuário de um carro
-
-
-x. Criar um projeto com migrações que crie uma tabela de usuários e carros, onde usuários possuem muitos carros
-x. O projeto deve seguir uma organização de Services e Repositories
-x. Proibido a utilização de models diretamente no controller
-x. Utilizar soft deletes em todas as models
-x. O projeto deve ao máximo evitar repetição de código, seguindo princípios de programação DRY,
-onde códigos repetidos devem ser abstraidos em classes abstratas.
-
-x. Uma rota no sistema que permita cadastrar um usuário na tabela criada
-x. Uma rota no sistema que retorne um usuário com todos os seus carros por um id informado na rota
-x. Uma rota no sistema que retorne todos os usuários com todos os carros relacionados do sistema
-x. Uma rota no sistema que receba um id de um usuário e permita atualizar seu email e senha
-x. Uma rota no sistema que permita deletar um usuário na tabela de usuários recebendo um id de usuário
-x. Quando um usuário é deletado, todos os relacionamentos com carros também deve ser deletados
-
-c. Uma rota no sistema que permita cadastrar um carro na tabela criada
-e. Uma rota no sistema que retorne um carro por um id informado na rota
-f. Uma rota no sistema que retorne todos os carros do sistema
-g. Uma rota no sistema que receba um id de um carro e permita atualizar o carro
-d. Uma rota no sistema que permita deletar um carro na tabela de carros recebendo um id de carro
-x. Quando um carro é deletado do sistema, todos os seus relacionamentos com usuários também deve ser deletado
-
-x. Uma rota no sistema que associa um usuário com um carro
-x. Uma rota que desassocia um usuário de um carro
+1. Criar uma rota no sistema que associa um usuário com um carro.
+2. Criar uma rota que desassocia um usuário de um carro.
 
