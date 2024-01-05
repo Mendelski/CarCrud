@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\CarService;
+use App\Http\Services\GeneralService;
 use App\Models\Car;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class carController extends Controller
+class CarController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
         $this->authorize('viewAny', Car::class);
-        return Car::all();
+        $cars = CarService::showAllCars();
+
+        return response()->json(['cars' => $cars]);
     }
 
-    public function store(Request $request): Car
+    public function store(Request $request): JsonResponse
     {
         $this->authorize('create', Car::class);
         $data = $request->validate([
@@ -25,17 +29,17 @@ class carController extends Controller
             'user_id' => ['required', 'integer'],
         ]);
 
-        return Car::create($data);
+        return response()->json(['car' => CarService::createCar($data)]);
     }
 
-    public function show(Car $car): Car
+    public function show(Car $car): JsonResponse
     {
         $this->authorize('view', $car);
 
-        return $car;
+        return response()->json(['car' => $car]);
     }
 
-    public function update(Request $request, Car $car): Car
+    public function update(Request $request, Car $car): JsonResponse
     {
         $this->authorize('update', $car);
 
@@ -47,17 +51,14 @@ class carController extends Controller
             'user_id' => ['required', 'integer'],
         ]);
 
-        $car->update($data);
+        return response()->json(['car' => CarService::updateCar($car, $data)]);
 
-        return $car;
     }
 
     public function destroy(Car $car): JsonResponse
     {
         $this->authorize('delete', $car);
-
-        $car->delete();
-
-        return response()->json();
+        CarService::deleteCar($car);
+        return GeneralService::returnOkJson();
     }
 }

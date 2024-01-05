@@ -29,7 +29,7 @@ class UserController extends Controller
 
     public function show(User $user): JsonResponse
     {
-        return response()->json(UserService::showUser($user));
+        return response()->json($user);
     }
 
     public function update(Request $request, User $user): JsonResponse

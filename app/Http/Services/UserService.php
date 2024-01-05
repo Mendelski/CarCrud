@@ -2,7 +2,7 @@
 
 namespace App\Http\Services;
 
-use App\Http\Repository\UserRepository;
+use App\Http\Repository\CrudRepository;
 use App\Models\Car;
 use App\Models\User;
 
@@ -11,38 +11,38 @@ class UserService
 
     public static function showAllUsers(): User
     {
-        return UserRepository::all();
+        return CrudRepository::all();
 
     }
 
     public static function createUser(array $data)
     {
-        return UserRepository::create($data);
+        return CrudRepository::create($data);
     }
 
     public static function showUser(User $user)
     {
-        return UserRepository::show($user);
+        return CrudRepository::show($user);
     }
 
     public static function updateUser(User $user, array $data): User
     {
-        return UserRepository::update($user, $data);
+        return CrudRepository::update($user, $data);
 
     }
 
     public static function deleteUser(User $user): void
     {
-        UserRepository::delete($user);
+        CrudRepository::delete($user);
     }
 
     public static function associateCar(User $user, Car $car): void
     {
-        UserRepository::associateCar($user, $car);
+        CrudRepository::associateCar($user, $car);
     }
 
     public static function disassociateCar(User $user, Car $car)
     {
-        UserRepository::disassociateCar($user, $car);
+        CrudRepository::disassociateCar($user, $car);
     }
 }
