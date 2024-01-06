@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('name', 100)->nullable(false);
             $table->string('email', 100)->nullable(false);
             $table->string('password', 100)->nullable(false);
+            $table->string('api_token', 255)->nullable(true);
             $table->timestamps();
             $table->softDeletes();
         });

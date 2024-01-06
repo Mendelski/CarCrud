@@ -10,8 +10,10 @@ class CarService
 
     public static function showAllCars(): array
     {
-        $model = new Car();
-        return CrudRepository::all($model);
+        dump('d2');
+        $model = Car::all();
+        dd($model);
+//        return CrudRepository::all($model);
     }
 
     public static function createCar(array $data): Car

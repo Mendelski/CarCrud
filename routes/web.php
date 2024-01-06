@@ -18,7 +18,7 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
-    $router->get('cars',  ['uses' => 'CarController@showAllCars']);
+    $router->get('cars', ['uses' => 'CarController@index']);
     $router->get('cars/{id}', ['uses' => 'CarController@showOneCar']);
     $router->post('cars', ['uses' => 'CarController@create']);
     $router->put('cars/{id}', ['uses' => 'CarController@update']);

@@ -10,6 +10,7 @@ class CrudRepository
 
     public static function all(User|Car $model): array
     {
+        dump('d3');
         return $model->all();
     }
 
